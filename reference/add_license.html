@@ -40,7 +40,9 @@
 
 
 <meta property="og:title" content="Add a LICENSE — add_license" />
-<meta property="og:description" content="This function adds a license to the project." />
+<meta property="og:description" content="This function adds a license to the project. It will add the license name
+in the License field of the DESCRIPTION file and write the content of
+the license in the License.md file." />
 
 
 
@@ -72,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rcompendium</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.9000</span>
       </span>
     </div>
 
@@ -85,7 +87,13 @@
   </a>
 </li>
 <li>
+  <a href="../articles/rcompendium.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -114,7 +122,9 @@
     </div>
 
     <div class="ref-description">
-    <p>This function adds a license to the project.</p>
+    <p>This function adds a license to the project. It will add the license name
+in the <code>License</code> field of the <code>DESCRIPTION</code> file and write the content of
+the license in the <code>License.md</code> file.</p>
     </div>
 
     <pre class="usage"><span class='fu'>add_license</span><span class='op'>(</span>license <span class='op'>=</span> <span class='cn'>NULL</span>, given <span class='op'>=</span> <span class='cn'>NULL</span>, family <span class='op'>=</span> <span class='cn'>NULL</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
@@ -124,38 +134,45 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>license</th>
-      <td><p>a character of length 1. The chosen license. Use
-<code><a href='get_licenses.html'>get_licenses()</a></code>) to select an appropriate one.</p></td>
+      <td><p>a character of length 1</p>
+<p>The chosen license. Run <code><a href='get_licenses.html'>get_licenses()</a></code>) to select an appropriate one.</p></td>
     </tr>
     <tr>
       <th>given</th>
-      <td><p>a character of length 1. User given name of the copyright
-holder. Only required if <code>license = 'MIT'</code>. If is <code>NULL</code> (default) and
-<code>license = 'MIT'</code>, this function will try to retrieve the value of this
-parameter from the <code>.Rprofile</code> file (edited with <code><a href='set_credentials.html'>set_credentials()</a></code>).</p></td>
+      <td><p>a character of length 1</p>
+<p>The given name of the copyright holder. Only required if
+<code>license = 'MIT'</code>. If is <code>NULL</code> (default) and <code>license = 'MIT'</code>, this
+function will try to retrieve the value of this parameter from the
+<code>.Rprofile</code> file (edited with <code><a href='set_credentials.html'>set_credentials()</a></code>).</p></td>
     </tr>
     <tr>
       <th>family</th>
-      <td><p>a character of length 1. User family name of the copyright
-holder. Only required if <code>license = 'MIT'</code>. If is <code>NULL</code> (default) and
-<code>license = 'MIT'</code>, this function will try to retrieve the value of this
-parameter from the <code>.Rprofile</code> file (edited with <code><a href='set_credentials.html'>set_credentials()</a></code>).</p></td>
+      <td><p>a character of length 1</p>
+<p>The family name of the copyright holder. Only required if
+<code>license = 'MIT'</code>. If is <code>NULL</code> (default) and <code>license = 'MIT'</code>, this
+function will try to retrieve the value of this parameter from the
+<code>.Rprofile</code> file (edited with <code><a href='set_credentials.html'>set_credentials()</a></code>).</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p>a logical value. If <code>TRUE</code> messages are deleted. Default is
-<code>FALSE</code>.</p></td>
+      <td><p>a logical value</p>
+<p>If <code>TRUE</code> messages are deleted. Default is <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>None</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other create files: 
 <code><a href='add_citation.html'>add_citation</a>()</code>,
+<code><a href='add_compendium.html'>add_compendium</a>()</code>,
 <code><a href='add_description.html'>add_description</a>()</code>,
 <code><a href='add_makefile.html'>add_makefile</a>()</code>,
 <code><a href='add_package_doc.html'>add_package_doc</a>()</code>,
 <code><a href='add_readme_rmd.html'>add_readme_rmd</a>()</code>,
+<code><a href='add_testthat.html'>add_testthat</a>()</code>,
 <code><a href='add_vignette.html'>add_vignette</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

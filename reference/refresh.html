@@ -41,11 +41,12 @@
 
 <meta property="og:title" content="Refresh a package/research compendium — refresh" />
 <meta property="og:description" content="This function refreshes a package/research compendium. It will:
-Update .Rd files and NAMESPACE, using devtools::document();
-Update external packages (in DESCRIPTION file);
+Update .Rd files and NAMESPACE by using devtools::document();
+Update external packages (in DESCRIPTION file) by using
+add_dependencies();
 Update badges in README.Rmd (if already present);
-Re-knitr the README.Rmd, using rmarkdown::render();
-Check package integrity with devtools::check();
+Re-knitr the README.Rmd by using rmarkdown::render();
+Check package integrity by using devtools::check();
 Run analysis by sourcing make.R (only for compendium).
 
 " />
@@ -80,7 +81,7 @@ Run analysis by sourcing make.R (only for compendium).
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rcompendium</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1.9000</span>
       </span>
     </div>
 
@@ -93,7 +94,13 @@ Run analysis by sourcing make.R (only for compendium).
   </a>
 </li>
 <li>
+  <a href="../articles/rcompendium.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -123,44 +130,55 @@ Run analysis by sourcing make.R (only for compendium).
 
     <div class="ref-description">
     <p>This function refreshes a package/research compendium. It will:</p><ul>
-<li><p>Update <code>.Rd</code> files and <code>NAMESPACE</code>, using <code><a href='https://devtools.r-lib.org//reference/document.html'>devtools::document()</a></code>;</p></li>
-<li><p>Update external packages (in <code>DESCRIPTION</code> file);</p></li>
+<li><p>Update <code>.Rd</code> files and <code>NAMESPACE</code> by using <code><a href='https://devtools.r-lib.org//reference/document.html'>devtools::document()</a></code>;</p></li>
+<li><p>Update external packages (in <code>DESCRIPTION</code> file) by using
+<code><a href='add_dependencies.html'>add_dependencies()</a></code>;</p></li>
 <li><p>Update badges in <code>README.Rmd</code> (if already present);</p></li>
-<li><p>Re-knitr the <code>README.Rmd</code>, using <code><a href='https://pkgs.rstudio.com/rmarkdown/reference/render.html'>rmarkdown::render()</a></code>;</p></li>
-<li><p>Check package integrity with <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code>;</p></li>
+<li><p>Re-knitr the <code>README.Rmd</code> by using <code><a href='https://pkgs.rstudio.com/rmarkdown/reference/render.html'>rmarkdown::render()</a></code>;</p></li>
+<li><p>Check package integrity by using <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code>;</p></li>
 <li><p>Run analysis by sourcing <code>make.R</code> (only for compendium).</p></li>
 </ul>
 
     </div>
 
-    <pre class="usage"><span class='fu'>refresh</span><span class='op'>(</span>import <span class='op'>=</span> <span class='cn'>NULL</span>, make <span class='op'>=</span> <span class='cn'>FALSE</span>, check <span class='op'>=</span> <span class='cn'>TRUE</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>refresh</span><span class='op'>(</span>compendium <span class='op'>=</span> <span class='cn'>NULL</span>, make <span class='op'>=</span> <span class='cn'>FALSE</span>, check <span class='op'>=</span> <span class='cn'>TRUE</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>import</th>
-      <td><p>(optional) the name of the folder to recursively detect
-dependencies to be added in the <code>Imports</code> field of <strong>DESCRIPTION</strong> file.
-Default is <code>import = NULL</code> (but <strong>R/</strong>, <strong>NAMESPACE</strong>, and <code>@examples</code> are
-still inspected).</p></td>
+      <th>compendium</th>
+      <td><p>a character of length 1</p>
+<p>The name of the folder to recursively detect dependencies to be added to
+the <code>Imports</code> field of <code>DESCRIPTION</code> file. It can be <code>'analysis/'</code> (if
+additional folders, i.e. <code>data/</code>, <code>outputs/</code>, <code>figures/</code>, etc. have been
+created in this folder), <code>'.'</code> (if folders <code>data/</code>, <code>outputs/</code>,
+<code>figures/</code>, etc. have been created at the root of the project), etc.
+See <code><a href='new_compendium.html'>new_compendium()</a></code> for further information.</p>
+<p>Default is <code>compendium = NULL</code> (i.e. no additional folder are inspected
+but <code>R/</code>, <code>NAMESPACE</code>, <code>vignettes/</code>, and <code>tests/</code> are still inspected).</p></td>
     </tr>
     <tr>
       <th>make</th>
-      <td><p>a logical value. If <code>TRUE</code> the Make-like R file <code>make.R</code> is
-sourced. Only for research compendium. Default is <code>FALSE</code>.</p></td>
+      <td><p>a logical value</p>
+<p>If <code>TRUE</code> the Make-like R file <code>make.R</code> is sourced. Only for research
+compendium created with <code><a href='new_compendium.html'>new_compendium()</a></code>. Default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>check</th>
-      <td><p>a logical value. If <code>TRUE</code> (default) package integrity is
-checked using <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code>.</p></td>
+      <td><p>a logical value</p>
+<p>If <code>TRUE</code> (default) package integrity is checked using <code><a href='https://devtools.r-lib.org//reference/check.html'>devtools::check()</a></code>.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p>a logical value. If <code>TRUE</code> (default) message are deleted.</p></td>
+      <td><p>a logical value</p>
+<p>If <code>TRUE</code> (default) message are deleted.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>None</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other setup functions: 
